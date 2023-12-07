@@ -1,0 +1,53 @@
+registro
+{
+    
+    "name": "Oscar Vallecillo",
+    "email": "oscar95@gmail.com",
+    "password":"1234",
+    "phone":"+504 8758-2713",
+    "country":"Honduras",
+    "city":"Francisco Morazan, tegucigalpa"
+
+}
+
+respuesta
+{
+    "data": {
+        "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZFVzZXIiOjIsImVtYWlsIjoib3NjYXI5NUBnbWFpbC5jb20iLCJpYXQiOjE3MDA5NTMyNzAsImV4cCI6MTcwMDk2MDQ3MH0.ysSIzDd9R_pGFpQWCDYCfh0qmH8zuA_gS8QL6s29JLk",
+        "user": {
+            "email": "oscar95@gmail.com",
+            "id": 2
+        }
+    }
+}
+==============================================================
+
+login
+{
+    "email": "oscar95@gmail.com",
+    "password":"1234"
+
+}
+
+respuesta
+{
+    "data": {
+        "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZFVzZXIiOjIsImVtYWlsIjoib3NjYXI5NUBnbWFpbC5jb20iLCJpYXQiOjE3MDA5NTMzNDMsImV4cCI6MTcwMDk2MDU0M30.6wWbDwc9G4J5xXJSBK0p0WS93ciFIm92seESpA6rXSI",
+        "user": {
+            "idUsuario": 2,
+            "nombre": "Oscar Vallecillo",
+            "correo": "oscar95@gmail.com",
+            "tipo": "user",
+            "numero_telefono": "+504 8758-2713",
+            "pais": "Honduras"
+        }
+    }
+}
+
+=================================
+respuesta del get paquetes
+{
+    "packages": []
+}
+
+

@@ -22,15 +22,6 @@ export function ErrorDetails(props: ErrorDetailsProps) {
         <Text tx="errorScreen.friendlySubtitle" />
       </View>
 
-      <ScrollView style={$errorSection} contentContainerStyle={$errorSectionContentContainer}>
-        <Text style={$errorContent} weight="bold" text={`${props.error}`.trim()} />
-        <Text
-          selectable
-          style={$errorBacktrace}
-          text={`${props.errorInfo.componentStack}`.trim()}
-        />
-      </ScrollView>
-
       <Button
         preset="reversed"
         style={$resetButton}
@@ -81,4 +72,5 @@ const $errorBacktrace: TextStyle = {
 const $resetButton: ViewStyle = {
   backgroundColor: colors.error,
   paddingHorizontal: spacing.xxl,
+  marginBottom: spacing.xl,
 }

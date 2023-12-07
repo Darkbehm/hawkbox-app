@@ -45,8 +45,8 @@ export const EpisodeModel = types
       try {
         const formatted = formatDate(episode.pubDate)
         return {
-          textLabel: formatted,
-          accessibilityLabel: translate("demoPodcastListScreen.accessibility.publishLabel", {
+          textLabel: translate("home.Screen.deliveredAt", { date: formatted }),
+          accessibilityLabel: translate("home.Screen.accessibility.publishLabel", {
             date: formatted,
           }),
         }
@@ -54,22 +54,10 @@ export const EpisodeModel = types
         return { textLabel: "", accessibilityLabel: "" }
       }
     },
-    get duration() {
-      const seconds = Number(episode.enclosure.duration)
-      const h = Math.floor(seconds / 3600)
-      const m = Math.floor((seconds % 3600) / 60)
-      const s = Math.floor((seconds % 3600) % 60)
-
-      const hDisplay = h > 0 ? `${h}:` : ""
-      const mDisplay = m > 0 ? `${m}:` : ""
-      const sDisplay = s > 0 ? s : ""
+    get state() {
       return {
-        textLabel: hDisplay + mDisplay + sDisplay,
-        accessibilityLabel: translate("demoPodcastListScreen.accessibility.durationLabel", {
-          hours: h,
-          minutes: m,
-          seconds: s,
-        }),
+        textLabel: translate("home.Screen.delivered"),
+        accessibilityLabel: translate("home.Screen.delivered"),
       }
     },
   }))

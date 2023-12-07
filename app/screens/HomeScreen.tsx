@@ -8,43 +8,35 @@ import {
   FlatList,
   Image,
   ImageStyle,
-  Platform,
-  StyleSheet,
-  TextStyle,
+  Platform, TextStyle,
   View,
-  ViewStyle,
+  ViewStyle
 } from "react-native"
-import Animated, {
-  Extrapolate,
-  interpolate,
-  useAnimatedStyle,
+import {
   useSharedValue,
-  withSpring,
+  withSpring
 } from "react-native-reanimated"
-import { Button, Card, EmptyState, Icon, Screen, Text, Toggle } from "../components"
+import { Button, Card, EmptyState, Screen, Text, Toggle } from "../components"
 import { isRTL, translate } from "../i18n"
 import { useStores } from "../models"
 import { Episode } from "../models/Episode"
-import { DemoTabScreenProps } from "../navigators/DemoNavigator"
 import { colors, spacing } from "../theme"
 import { delay } from "../utils/delay"
 import { openLinkInBrowser } from "../utils/openLinkInBrowser"
-
-const ICON_SIZE = 14
+import { HomeTabScreenProps } from "app/navigators"
 
 const rnrImage1 = require("../../assets/images/rnr-image-1.png")
 const rnrImage2 = require("../../assets/images/rnr-image-2.png")
 const rnrImage3 = require("../../assets/images/rnr-image-3.png")
 const rnrImages = [rnrImage1, rnrImage2, rnrImage3]
 
-export const DemoPodcastListScreen: FC<DemoTabScreenProps<"DemoPodcastList">> = observer(
-  function DemoPodcastListScreen(_props) {
+export const HomeScreen: FC<HomeTabScreenProps<"HomeScreen">> = observer(
+  function HomeScreen(_props) {
     const { episodeStore } = useStores()
 
     const [refreshing, setRefreshing] = React.useState(false)
     const [isLoading, setIsLoading] = React.useState(false)
 
-    // initially, kick off a background refresh without the refreshing UI
     useEffect(() => {
       ;(async function load() {
         setIsLoading(true)
@@ -60,10 +52,11 @@ export const DemoPodcastListScreen: FC<DemoTabScreenProps<"DemoPodcastList">> = 
       setRefreshing(false)
     }
 
+
+
     return (
       <Screen
         preset="fixed"
-        safeAreaEdges={["top"]}
         contentContainerStyle={$screenContentContainer}
       >
         <FlatList<Episode>
@@ -81,12 +74,12 @@ export const DemoPodcastListScreen: FC<DemoTabScreenProps<"DemoPodcastList">> = 
                 style={$emptyState}
                 headingTx={
                   episodeStore.favoritesOnly
-                    ? "demoPodcastListScreen.noFavoritesEmptyState.heading"
+                    ? "home.EmptyState.heading"
                     : undefined
                 }
                 contentTx={
                   episodeStore.favoritesOnly
-                    ? "demoPodcastListScreen.noFavoritesEmptyState.content"
+                    ? "home.EmptyState.content"
                     : undefined
                 }
                 button={episodeStore.favoritesOnly ? null : undefined}
@@ -98,7 +91,7 @@ export const DemoPodcastListScreen: FC<DemoTabScreenProps<"DemoPodcastList">> = 
           }
           ListHeaderComponent={
             <View style={$heading}>
-              <Text preset="heading" tx="demoPodcastListScreen.title" />
+              <Text preset="heading" tx="home.Screen.title" />
               {(episodeStore.favoritesOnly || episodeStore.episodesForList.length > 0) && (
                 <View style={$toggle}>
                   <Toggle
@@ -107,10 +100,10 @@ export const DemoPodcastListScreen: FC<DemoTabScreenProps<"DemoPodcastList">> = 
                       episodeStore.setProp("favoritesOnly", !episodeStore.favoritesOnly)
                     }
                     variant="switch"
-                    labelTx="demoPodcastListScreen.onlyFavorites"
+                    labelTx="home.Screen.onlyFavorites"
                     labelPosition="left"
                     labelStyle={$labelStyle}
-                    accessibilityLabel={translate("demoPodcastListScreen.accessibility.switch")}
+                    accessibilityLabel={translate("home.Screen.accessibility.switch")}
                   />
                 </View>
               )}
@@ -145,30 +138,6 @@ const EpisodeCard = observer(function EpisodeCard({
     return rnrImages[Math.floor(Math.random() * rnrImages.length)]
   }, [])
 
-  // Grey heart
-  const animatedLikeButtonStyles = useAnimatedStyle(() => {
-    return {
-      transform: [
-        {
-          scale: interpolate(liked.value, [0, 1], [1, 0], Extrapolate.EXTEND),
-        },
-      ],
-      opacity: interpolate(liked.value, [0, 1], [1, 0], Extrapolate.CLAMP),
-    }
-  })
-
-  // Pink heart
-  const animatedUnlikeButtonStyles = useAnimatedStyle(() => {
-    return {
-      transform: [
-        {
-          scale: liked.value,
-        },
-      ],
-      opacity: liked.value,
-    }
-  })
-
   /**
    * Android has a "longpress" accessibility action. iOS does not, so we just have to use a hint.
    * @see https://reactnative.dev/docs/accessibility#accessibilityactions
@@ -178,7 +147,7 @@ const EpisodeCard = observer(function EpisodeCard({
       Platform.select<AccessibilityProps>({
         ios: {
           accessibilityLabel: episode.title,
-          accessibilityHint: translate("demoPodcastListScreen.accessibility.cardHint", {
+          accessibilityHint: translate("home.Screen.accessibility.cardHint", {
             action: isFavorite ? "unfavorite" : "favorite",
           }),
         },
@@ -187,7 +156,7 @@ const EpisodeCard = observer(function EpisodeCard({
           accessibilityActions: [
             {
               name: "longpress",
-              label: translate("demoPodcastListScreen.accessibility.favoriteAction"),
+              label: translate("home.Screen.accessibility.favoriteAction"),
             },
           ],
           onAccessibilityAction: ({ nativeEvent }) => {
@@ -209,33 +178,6 @@ const EpisodeCard = observer(function EpisodeCard({
     openLinkInBrowser(episode.enclosure.link)
   }
 
-  const ButtonLeftAccessory = useMemo(
-    () =>
-      function ButtonLeftAccessory() {
-        return (
-          <View>
-            <Animated.View
-              style={[$iconContainer, StyleSheet.absoluteFill, animatedLikeButtonStyles]}
-            >
-              <Icon
-                icon="heart"
-                size={ICON_SIZE}
-                color={colors.palette.neutral800} // dark grey
-              />
-            </Animated.View>
-            <Animated.View style={[$iconContainer, animatedUnlikeButtonStyles]}>
-              <Icon
-                icon="heart"
-                size={ICON_SIZE}
-                color={colors.palette.primary400} // pink
-              />
-            </Animated.View>
-          </View>
-        )
-      },
-    [],
-  )
-
   return (
     <Card
       style={$item}
@@ -254,9 +196,9 @@ const EpisodeCard = observer(function EpisodeCard({
           <Text
             style={$metadataText}
             size="xxs"
-            accessibilityLabel={episode.duration.accessibilityLabel}
+            accessibilityLabel={episode.state.accessibilityLabel}
           >
-            {episode.duration.textLabel}
+            {episode.state.textLabel}
           </Text>
         </View>
       }
@@ -270,19 +212,18 @@ const EpisodeCard = observer(function EpisodeCard({
           style={[$favoriteButton, isFavorite && $unFavoriteButton]}
           accessibilityLabel={
             isFavorite
-              ? translate("demoPodcastListScreen.accessibility.unfavoriteIcon")
-              : translate("demoPodcastListScreen.accessibility.favoriteIcon")
+              ? translate("home.Screen.accessibility.unfavoriteIcon")
+              : translate("home.Screen.accessibility.favoriteIcon")
           }
-          LeftAccessory={ButtonLeftAccessory}
         >
           <Text
             size="xxs"
-            accessibilityLabel={episode.duration.accessibilityLabel}
+            accessibilityLabel={episode.state.accessibilityLabel}
             weight="medium"
             text={
               isFavorite
-                ? translate("demoPodcastListScreen.unfavoriteButton")
-                : translate("demoPodcastListScreen.favoriteButton")
+                ? translate("home.Screen.unfavoriteButton")
+                : translate("home.Screen.favoriteButton")
             }
           />
         </Button>
@@ -298,7 +239,7 @@ const $screenContentContainer: ViewStyle = {
 
 const $flatListContentContainer: ViewStyle = {
   paddingHorizontal: spacing.lg,
-  paddingTop: spacing.lg + spacing.xl,
+  // paddingTop: spacing.lg + spacing.xl,
   paddingBottom: spacing.lg,
 }
 
@@ -324,13 +265,6 @@ const $toggle: ViewStyle = {
 
 const $labelStyle: TextStyle = {
   textAlign: "left",
-}
-
-const $iconContainer: ViewStyle = {
-  height: ICON_SIZE,
-  width: ICON_SIZE,
-  flexDirection: "row",
-  marginEnd: spacing.sm,
 }
 
 const $metadata: TextStyle = {
@@ -371,5 +305,3 @@ const $emptyStateImage: ImageStyle = {
   transform: [{ scaleX: isRTL ? -1 : 1 }],
 }
 // #endregion
-
-// @demo remove-file

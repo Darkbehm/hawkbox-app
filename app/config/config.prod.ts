@@ -6,5 +6,5 @@
  * https://reactnative.dev/docs/security#storing-sensitive-info
  */
 export default {
-  API_URL: "CHANGEME",
+  API_URL: "https://api-hawkbox-dev-meqn.3.us-1.fl0.io/api/",
 }

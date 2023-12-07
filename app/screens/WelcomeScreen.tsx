@@ -15,31 +15,25 @@ import { useSafeAreaInsetsStyle } from "../utils/useSafeAreaInsetsStyle"
 const welcomeLogo = require("../../assets/images/logo.png")
 const welcomeFace = require("../../assets/images/welcome-face.png")
 
-interface WelcomeScreenProps extends AppStackScreenProps<"Welcome"> {}
+interface WelcomeScreenProps extends AppStackScreenProps<"Welcome"> { }
 
 export const WelcomeScreen: FC<WelcomeScreenProps> = observer(function WelcomeScreen(
-  _props, // @demo remove-current-line
+  _props,
 ) {
-  // @demo remove-block-start
   const { navigation } = _props
   const {
-    authenticationStore: { logout },
+    authenticationStore: { logout, isAuthenticated },
   } = useStores()
 
   function goNext() {
-    navigation.navigate("Demo", { screen: "DemoShowroom" })
+    if (isAuthenticated) {
+      navigation.navigate("Home")
+    } else {
+      navigation.navigate("Login")
+    }
   }
 
-  useHeader(
-    {
-      rightTx: "common.logOut",
-      onRightPress: logout,
-    },
-    [logout],
-  )
-  // @demo remove-block-end
-
-  const $bottomContainerInsets = useSafeAreaInsetsStyle(["bottom"])
+  const $bottomContainerInsets = useSafeAreaInsetsStyle([ "bottom" ])
 
   return (
     <View style={$container}>
@@ -52,19 +46,25 @@ export const WelcomeScreen: FC<WelcomeScreenProps> = observer(function WelcomeSc
           preset="heading"
         />
         <Text tx="welcomeScreen.exciting" preset="subheading" />
-        <Image style={$welcomeFace} source={welcomeFace} resizeMode="contain" />
       </View>
 
-      <View style={[$bottomContainer, $bottomContainerInsets]}>
-        <Text tx="welcomeScreen.postscript" size="md" />
-        {/* @demo remove-block-start */}
+      <View style={[ $bottomContainer, $bottomContainerInsets ]}>
+        {!isAuthenticated ? (
+          <Text tx="welcomeScreen.postscript" size="md" />
+        ) :
+          (<Text tx="welcomeScreen.postscriptLogged" txOptions={
+            {
+              name: "Billy Enrique",
+              count: 5,
+            }
+          } size="md" />)
+        }
         <Button
           testID="next-screen-button"
           preset="reversed"
           tx="welcomeScreen.letsGo"
           onPress={goNext}
         />
-        {/* @demo remove-block-end */}
       </View>
     </View>
   )
@@ -87,7 +87,7 @@ const $bottomContainer: ViewStyle = {
   flexShrink: 1,
   flexGrow: 0,
   flexBasis: "43%",
-  backgroundColor: colors.palette.neutral100,
+  backgroundColor: colors.palette.neutral50,
   borderTopLeftRadius: 16,
   borderTopRightRadius: 16,
   paddingHorizontal: spacing.lg,
@@ -105,7 +105,7 @@ const $welcomeFace: ImageStyle = {
   position: "absolute",
   bottom: -47,
   right: -80,
-  transform: [{ scaleX: isRTL ? -1 : 1 }],
+  transform: [ { scaleX: isRTL ? -1 : 1 } ],
 }
 
 const $welcomeHeading: TextStyle = {

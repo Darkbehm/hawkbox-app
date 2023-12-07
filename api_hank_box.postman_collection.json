@@ -1,0 +1,70 @@
+{
+	"info": {
+		"_postman_id": "103f509a-39fe-4e4e-a4ab-36725cf4d109",
+		"name": "api_hank_box",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json",
+		"_exporter_id": "26048004"
+	},
+	"item": [
+		{
+			"name": "paquetes",
+			"item": []
+		},
+		{
+			"name": "Usuarios",
+			"item": [
+				{
+					"name": "obtener_paquetes",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZFVzZXIiOjIsImVtYWlsIjoib3NjYXI5NUBnbWFpbC5jb20iLCJpYXQiOjE3MDA5NTMzNDMsImV4cCI6MTcwMDk2MDU0M30.6wWbDwc9G4J5xXJSBK0p0WS93ciFIm92seESpA6rXSI"
+							}
+						},
+						"method": "GET",
+						"header": [],
+						"url": "https://api-hawkbox-dev-meqn.3.us-1.fl0.io/api/paquetes/obtenerPaquetes/19"
+					},
+					"response": []
+				},
+				{
+					"name": "registro",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \r\n    \"name\": \"Oscar Vallecillo\",\r\n    \"email\": \"oscar95@gmail.com\",\r\n    \"password\":\"1234\",\r\n    \"phone\":\"+504 8758-2713\",\r\n    \"country\":\"Honduras\",\r\n    \"city\":\"Francisco Morazan, tegucigalpa\"\r\n\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "https://api-hawkbox-dev-meqn.3.us-1.fl0.io/api/auth/registro"
+					},
+					"response": []
+				},
+				{
+					"name": "login",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"oscar95@gmail.com\",\r\n    \"password\":\"1234\"\r\n\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "https://api-hawkbox-dev-meqn.3.us-1.fl0.io/api/auth/login"
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}

@@ -11,5 +11,5 @@ function IgniteApp() {
   return <App hideSplashScreen={RNBootSplash.hide} />
 }
 
-AppRegistry.registerComponent("HawkBoxIgnite", () => IgniteApp)
+AppRegistry.registerComponent("HawkBox", () => IgniteApp)
 export default App

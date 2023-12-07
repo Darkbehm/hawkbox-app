@@ -15,9 +15,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "13B07F861A680F5B00A75B9A"
-               BuildableName = "HawkBoxIgnite.app"
-               BlueprintName = "HawkBoxIgnite"
-               ReferencedContainer = "container:HawkBoxIgnite.xcodeproj">
+               BuildableName = "HawkBox.app"
+               BlueprintName = "HawkBox"
+               ReferencedContainer = "container:HawkBox.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -33,9 +33,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "00E356ED1AD99517003FC87E"
-               BuildableName = "HawkBoxIgniteTests.xctest"
-               BlueprintName = "HawkBoxIgniteTests"
-               ReferencedContainer = "container:HawkBoxIgnite.xcodeproj">
+               BuildableName = "HawkBoxTests.xctest"
+               BlueprintName = "HawkBoxTests"
+               ReferencedContainer = "container:HawkBox.xcodeproj">
             </BuildableReference>
          </TestableReference>
       </Testables>
@@ -55,9 +55,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "13B07F861A680F5B00A75B9A"
-            BuildableName = "HawkBoxIgnite.app"
-            BlueprintName = "HawkBoxIgnite"
-            ReferencedContainer = "container:HawkBoxIgnite.xcodeproj">
+            BuildableName = "HawkBox.app"
+            BlueprintName = "HawkBox"
+            ReferencedContainer = "container:HawkBox.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </LaunchAction>
@@ -72,9 +72,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "13B07F861A680F5B00A75B9A"
-            BuildableName = "HawkBoxIgnite.app"
-            BlueprintName = "HawkBoxIgnite"
-            ReferencedContainer = "container:HawkBoxIgnite.xcodeproj">
+            BuildableName = "HawkBox.app"
+            BlueprintName = "HawkBox"
+            ReferencedContainer = "container:HawkBox.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>

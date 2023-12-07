@@ -157,7 +157,14 @@ const $viewPresets = {
     },
   ] as StyleProp<ViewStyle>,
 
-  filled: [$baseViewStyle, { backgroundColor: colors.palette.neutral300 }] as StyleProp<ViewStyle>,
+  filled: [
+    $baseViewStyle, 
+    { 
+      backgroundColor: colors.palette.neutral300 ,
+      borderWidth: 1,
+      borderColor: colors.palette.neutral500,
+    },
+  ] as StyleProp<ViewStyle>,
 
   reversed: [
     $baseViewStyle,

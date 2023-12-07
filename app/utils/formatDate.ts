@@ -9,7 +9,7 @@ import format from "date-fns/format"
 import parseISO from "date-fns/parseISO"
 import ar from "date-fns/locale/ar-SA"
 import ko from "date-fns/locale/ko"
-import en from "date-fns/locale/en-US"
+import en from "date-fns/locale/es"
 
 type Options = Parameters<typeof format>[2]
 
@@ -24,5 +24,5 @@ export const formatDate = (date: string, dateFormat?: string, options?: Options)
     ...options,
     locale,
   }
-  return format(parseISO(date), dateFormat ?? "MMM dd, yyyy", dateOptions)
+  return format(parseISO(date), dateFormat ?? "dd MMM. yyyy", dateOptions)
 }

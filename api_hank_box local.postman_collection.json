@@ -1,0 +1,122 @@
+{
+	"info": {
+		"_postman_id": "38bf5226-9cf0-498b-aac3-a547a8e11d61",
+		"name": "api_hank_box local",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json",
+		"_exporter_id": "26048004"
+	},
+	"item": [
+		{
+			"name": "paquetes",
+			"item": [
+				{
+					"name": "crear paquete",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZFVzZXIiOjEsImVtYWlsIjoib3NjYXI5NUBnbWFpbC5jb20iLCJpYXQiOjE3MDE4OTQ4ODQsImV4cCI6MTcwMTk4MTI4NH0.z8AAg3AVB7RgHz79GZhn78vGvqrho1lwAMZQJiuyg4k"
+							}
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"weigth\": 104.45,\r\n    \"state\": \"creado\",\r\n    \"description\":\"laptop\",\r\n    \"idEmpresa\":2,\r\n    \"idUsuario\":1\r\n\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:5000/api/paquetes/crearPaquete"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Usuarios",
+			"item": [
+				{
+					"name": "obtener_paquetes",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZFVzZXIiOjEsImVtYWlsIjoib3NjYXI5NUBnbWFpbC5jb20iLCJpYXQiOjE3MDE4OTM2OTQsImV4cCI6MTcwMTk4MDA5NH0.QJj31_4ShHmT2g4qW_8tdgxG6m9BTWsq5Vc9gP1_YdQ"
+							}
+						},
+						"method": "GET",
+						"header": [],
+						"url": "http://localhost:5000/api/paquetes/obtenerPaquetes/1"
+					},
+					"response": []
+				},
+				{
+					"name": "registro",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \r\n    \"name\": \"Oscar Vallecillo\",\r\n    \"email\": \"oscar95@gmail.com\",\r\n    \"password\":\"1234\",\r\n    \"phone\":\"+504 8758-2713\",\r\n    \"country\":\"Honduras\",\r\n    \"city\":\"Francisco Morazan, tegucigalpa\"\r\n\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:5000/api/auth/registro"
+					},
+					"response": []
+				},
+				{
+					"name": "login",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"oscar95@gmail.com\",\r\n    \"password\":\"1234\"\r\n\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:5000/api/auth/login"
+					},
+					"response": []
+				},
+				{
+					"name": "crear token",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": "http://localhost:5000/api/usuarios/crearToken/1/algo"
+					},
+					"response": []
+				},
+				{
+					"name": "enviar notificacion",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"title\":\"nueva notificacion\",\r\n    \"description\":\"su paquete esta en camino\",\r\n    \"idUsuario\":1,\r\n    \"idPaquete\":1,\r\n    \"message\":\"Nueva descripcion\",\r\n    \"tipoEstado\":\"En camino\"\r\n\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:5000/api/usuarios/enviarNotificacion"
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
