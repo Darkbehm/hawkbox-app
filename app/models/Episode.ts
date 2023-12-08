@@ -56,8 +56,8 @@ export const EpisodeModel = types
     },
     get state() {
       return {
-        textLabel: translate("home.Screen.delivered"),
-        accessibilityLabel: translate("home.Screen.delivered"),
+        textLabel: translate("home.Screen.inTransit"),
+        accessibilityLabel: translate("home.Screen.inTransit"),
       }
     },
   }))

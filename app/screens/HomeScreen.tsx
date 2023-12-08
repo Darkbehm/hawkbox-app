@@ -202,7 +202,7 @@ const EpisodeCard = observer(function EpisodeCard({
           </Text>
         </View>
       }
-      content={`${episode.parsedTitleAndSubtitle.title} - ${episode.parsedTitleAndSubtitle.subtitle}`}
+      content={`Paquete 46290${episode.parsedTitleAndSubtitle.title.split(" ")[1]} - Tarjeta grafica RTX 3090 - DHL`}
       {...accessibilityHintProps}
       RightComponent={<Image source={imageUri} style={$itemThumbnail} />}
       FooterComponent={

@@ -22,9 +22,9 @@ const en = {
   },
   emptyStateComponent: {
     generic: {
-      heading: "So empty... so sad",
-      content: "No data found yet. Try clicking the button to refresh or reload the app.",
-      button: "Let's try this again",
+      heading: "No hay nada aun para mostrar",
+      content: "No se encontraron paquetes, puedes ver la direccion de entrega en tu perfil.",
+      button: "Intentar de nuevo",
     },
   },
   errors: {
@@ -65,8 +65,8 @@ const en = {
       inTransit: "En camino",
     },
     EmptyState: {
-      heading: "No hay paquetes",
-      content: "No hay paquetes para mostrar. Puedes ver la direccion de entrega en tu perfil.",
+      heading: "No hay paquetes importantes",
+      content: "Puedes Agregar paquetes a importantes para visualizarlos aqui.",
     }
   }
 }
